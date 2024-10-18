@@ -5,4 +5,8 @@ module edu.badpals.valorantapi {
 
     opens edu.badpals.valorantapi to javafx.fxml;
     exports edu.badpals.valorantapi;
+    exports Controlador;
+    opens Controlador to javafx.fxml;
+    exports edu.badpals.valorantapi.Controller;
+    opens edu.badpals.valorantapi.Controller to javafx.fxml;
 }
