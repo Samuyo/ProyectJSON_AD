@@ -7,9 +7,26 @@ import java.util.HashMap;
 public class Character {
 
     HashMap<String, String> Characters = new HashMap<>();
+    String nombre;
+    String rol;
+    String descripcion;
+    String ab1;
+    String ab2;
+    String ab3;
+    String ab4;
+
+    Character(String nombre, String rol, String descripcion, String ab1, String ab2, String ab3, String ab4) {
+        this.nombre = nombre;
+        this.rol = rol;
+        this.descripcion = descripcion;
+        this.ab1 = ab1;
+        this.ab2 = ab2;
+        this.ab3 = ab3;
+        this.ab4 = ab4;
+    }
 
     /* Recorre el JSON y llena el hashMap "Characters" con el nombre del agente y su id */
-    private void agregarPersonajes(String jsonString) {
+    private void agregarPersonajes (String jsonString){
         // Convertir la cadena JSON a un JSONArray
         JSONArray jsonArray = new JSONArray(jsonString);
 
@@ -22,43 +39,14 @@ public class Character {
         }
     }
 
-    /* Recibe como parámetro un nombre dado por el usuario y devuelve un Array con la información de ese AGENTE */
-    private String[] buscarPersonaje(String nombre) {
-        String[] ficha = new String[5];
-        try {
-            // Buscamos el ID del personaje
-            String id = nameToId(nombre, Characters);
-
-            // Aquí deberías obtener el jsonObject del personaje usando su ID (esto es solo un ejemplo)
-            // Supongamos que tienes un método para obtener el jsonObject del personaje por ID
-            JSONObject jsonObject = getJsonObjectById(id);
-
-            // Extrae la información del personaje y guárdala en el array
-            ficha[0] = id;
-            ficha[1] = jsonObject.getString("displayName");
-            ficha[2] = jsonObject.getString("rol"); // Ajusta según los campos reales
-            ficha[3] = jsonObject.getString("description");
-            ficha[4] = jsonObject.getString("abilities");
-
-        } catch (Exception e) {
-            System.out.println("Error al definir variables en Character.buscarPersonaje");
-        }
-        return ficha;
-    }
 
     /* Recibe como parámetro un nombre dado por el usuario y el hashmap de "Characters" y te devuelve su respectivo ID */
-    private String nameToId(String nombre, HashMap<String, String> personajes) throws Exception {
+    private String nameToId (String nombre, HashMap < String, String > personajes) throws Exception {
         for (HashMap.Entry<String, String> entry : personajes.entrySet()) {
             if (entry.getValue().equalsIgnoreCase(nombre)) {
                 return entry.getKey(); // Devuelve el ID como String
             }
         }
         throw new Exception("Personaje no encontrado: " + nombre);
-    }
-
-    // Método ejemplo para obtener un JSONObject del personaje por ID (esto es solo una estructura)
-    private JSONObject getJsonObjectById(String id) {
-        // Implementa la lógica para obtener el JSONObject del personaje por su ID
-        return new JSONObject(); // Reemplaza esto con la lógica real
     }
 }
