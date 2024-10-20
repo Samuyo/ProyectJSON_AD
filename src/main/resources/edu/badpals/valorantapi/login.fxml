@@ -35,7 +35,7 @@
                         <Font name="Arial Black" size="14.0" />
                      </font>
                   </Label>
-                  <Button fx:id="btnEnviar" layoutX="103.0" layoutY="330.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0" style="-fx-background-color: #c172df; -fx-background-radius: 20px;" text="Enter" onAction="#handleButtonEnter">>
+                  <Button fx:id="btnEnviar" layoutX="103.0" layoutY="330.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0" style="-fx-background-color: #c172df; -fx-background-radius: 20px;" text="Enter" onAction="#handleBtnEnter">>
                      <font>
                         <Font name="Arial Black" size="14.0" />
                      </font>

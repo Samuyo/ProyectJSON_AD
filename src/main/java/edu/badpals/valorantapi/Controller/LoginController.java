@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class LoginController {
-    public void handleButtonEnter(ActionEvent event){
+    public void handleBtnEnter(ActionEvent event){
         try {
             // Carga la nueva venta
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/edu/badpals/valorantapi/search.fxml"));
