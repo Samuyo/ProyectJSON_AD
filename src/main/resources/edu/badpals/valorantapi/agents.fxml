@@ -7,7 +7,8 @@
 <?import javafx.scene.text.Font?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="AnPaneAg" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
             minWidth="-Infinity" prefHeight="511.0" prefWidth="827.0"
-            xmlns="http://javafx.com/javafx/23.0.1">
+            xmlns="http://javafx.com/javafx/23.0.1"
+            fx:controller="edu.badpals.valorantapi.Controller.AgentsController">
    <children>
        <TabPane fx:id="TabPaneAg" prefHeight="511.0" prefWidth="827.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -30,7 +31,7 @@
                                  </font>
                               </Label>
                               <Label fx:id="lblRolAg" layoutX="35.0" layoutY="119.0" prefHeight="17.0" prefWidth="324.0" text="Rol" />
-                              <Button fx:id="btnReturn" layoutX="32.0" layoutY="26.0" mnemonicParsing="false" prefWidth="82.0" style="-fx-background-color: #2F2828;" text="Return">
+                              <Button fx:id="btnReturn" layoutX="32.0" layoutY="26.0" mnemonicParsing="false" prefWidth="82.0" style="-fx-background-color: #2F2828;" text="Return" onAction="#handlebtnReturn">
                                  <textFill>
                                     <LinearGradient endY="0.37914691943127965" startX="0.20853080568720384" startY="0.1848341232227488">
                                        <stops>

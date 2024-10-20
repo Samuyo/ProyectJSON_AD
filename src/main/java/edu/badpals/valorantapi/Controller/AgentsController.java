@@ -5,15 +5,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-;
 
 import java.io.IOException;
 
-public class Controller2 {
-
-
-
-    public void btnReturn(ActionEvent event){
+public class AgentsController {
+    public void handlebtnReturn(ActionEvent event){
         try {
             // Carga la nueva venta
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/edu/badpals/valorantapi/search.fxml"));
