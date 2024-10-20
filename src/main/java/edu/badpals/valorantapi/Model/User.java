@@ -10,6 +10,7 @@ public class User {
     HashMap<String,String> users = new HashMap<>();
 
 
+
     private void registerUser(String usuario, String contrasenia){
         if ((usuario.length() >= 5) && (contrasenia.length() >= 5)){
             users.put(usuario,contrasenia);
@@ -20,10 +21,8 @@ public class User {
         }
     }
 
-    private void saveUser(){
-        users.put("Admin", "Dosp!");
-        users.put("Usuario","1234a");
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("../../../../../resources/BD/users.txt"))) {
+    public void saveUser(){
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/resources/BD/users.txt"))) {
             for (Map.Entry<String, String> entry : users.entrySet()) {
                 writer.write(entry.getKey() + "=" + entry.getValue());
                 writer.newLine();
