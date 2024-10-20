@@ -47,8 +47,8 @@ public class LoginController {
                 String[] partes = linea.split("=", 2);
                 if (partes.length == 2) {
                     String usuario = partes[0].trim();
-                    String contraseña = partes[1].trim();
-                    userCredentials.put(usuario, contraseña);
+                    String contrasenia = partes[1].trim();
+                    userCredentials.put(usuario, contrasenia);
                 }
             }
         } catch (IOException e) {
