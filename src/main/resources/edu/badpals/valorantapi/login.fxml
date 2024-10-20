@@ -35,11 +35,12 @@
                         <Font name="Arial Black" size="14.0" />
                      </font>
                   </Label>
-                  <Button fx:id="btnEnviar" layoutX="103.0" layoutY="330.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0" style="-fx-background-color: #c172df; -fx-background-radius: 20px;" text="Enter" onAction="#handleBtnEnter">>
+                  <Button fx:id="btnEnviar" layoutX="103.0" layoutY="330.0" mnemonicParsing="false" onAction="#handleBtnEnter" prefHeight="90.0" prefWidth="90.0" style="-fx-background-color: #c172df; -fx-background-radius: 20px;" text="Enter">>
                      <font>
                         <Font name="Arial Black" size="14.0" />
                      </font>
                   </Button>
+                  <Button fx:id="btnNewUser" layoutX="22.0" layoutY="515.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="167.0" text="Nuevo usuario" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="567.0" prefWidth="112.0" style="-fx-background-color: #923cb2;">
