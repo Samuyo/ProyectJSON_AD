@@ -7,28 +7,37 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class LoginController {
-    @FXML
-    public TextField txtLogin;
+public class AgentsController {
 
     @FXML
-    public Label lblLogin;
+    public Label nomeAge;
 
     @FXML
-    public TextField txtPassword;
+    public Label lblAbil4Ag;
 
     @FXML
-    public Label lblPassword;
+    public Label lblAbil3Ag;
 
     @FXML
-    public Button btnEnviar;
+    public Label lblAbil1Ag;
 
-    public void handleBtnEnter(ActionEvent event){
+    @FXML
+    public Label lblAbil2Ag;
+
+    @FXML
+    public Label lblDescAg;
+
+    @FXML
+    public Label lblRolAg;
+
+    @FXML
+    public Button btnReturn;
+
+    public void handlebtnReturn(ActionEvent event){
         try {
             // Carga la nueva venta
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/edu/badpals/valorantapi/search.fxml"));

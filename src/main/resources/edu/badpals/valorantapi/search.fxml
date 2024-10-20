@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="511.0" prefWidth="827.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="511.0" prefWidth="827.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.badpals.valorantapi.Controller.SearchController">
    <children>
       <TabPane prefHeight="511.0" prefWidth="827.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -29,8 +29,8 @@
                               <Font name="Arial Black" size="18.0" />
                            </font>
                         </Label>
-                        <Button fx:id="btnBuscar" layoutX="373.0" layoutY="431.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="72.0" text="Buscar" />
-                        <Button fx:id="btnExit" layoutX="741.0" layoutY="444.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="72.0" text="Salir" />
+                        <Button fx:id="btnBuscar" layoutX="373.0" layoutY="431.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="72.0" text="Buscar" onAction="#handlebtnBuscar"/>
+                        <Button fx:id="btnExit" layoutX="741.0" layoutY="444.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="72.0" text="Salir" onAction="#handlebtnSalir"/>
                      </children>
                   </AnchorPane>
             </content>
