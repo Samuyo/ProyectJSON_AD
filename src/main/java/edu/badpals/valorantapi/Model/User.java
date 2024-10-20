@@ -27,6 +27,7 @@ public class User {
     }
 
     public void saveUser(){
+        admiUsers();
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/resources/BD/users.txt"))) {
             for (Map.Entry<String, String> entry : users.entrySet()) {
                 writer.write(entry.getKey() + "=" + entry.getValue());
