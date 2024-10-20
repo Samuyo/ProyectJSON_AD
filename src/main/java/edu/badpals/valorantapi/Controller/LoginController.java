@@ -10,9 +10,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
+import java.util.HashMap;
 
 public class LoginController {
+    String archivo = "src/main/resources/BD/users.txt";
     @FXML
     public TextField txtLogin;
 
@@ -28,21 +32,55 @@ public class LoginController {
     @FXML
     public Button btnEnviar;
 
-    public void handleBtnEnter(ActionEvent event){
-        try {
-            // Carga la nueva venta
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/edu/badpals/valorantapi/search.fxml"));
-            Parent root = loader.load();
+    private HashMap<String, String> userCredentials = new HashMap<>();
 
-            // Obtiene el stado actual
-            Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+    @FXML
+    public void initialize() {
+        leer();
+    }
 
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            // Muestra la ventana
-            stage.show();
+    private void leer(){
+
+        try(BufferedReader br = new BufferedReader(new FileReader(archivo))){
+            String linea;
+            while ((linea = br.readLine())!= null){
+                String[] partes = linea.split("=", 2);
+                if (partes.length == 2) {
+                    String usuario = partes[0].trim();
+                    String contraseña = partes[1].trim();
+                    userCredentials.put(usuario, contraseña);
+                }
+            }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void handleBtnEnter(ActionEvent event){
+        String user = txtLogin.getText();
+        String password = txtPassword.getText();
+
+        if (autentificacionUser(user,password)) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/edu/badpals/valorantapi/search.fxml"));
+                Parent root = loader.load();
+                Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            }catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        } else {
+            System.out.println("Autenticación fallida. Usuario o contraseña incorrecta.");
+
+        }
+    }
+
+    private boolean autentificacionUser(String user, String password){
+        if (userCredentials.containsKey(user)) {
+            return userCredentials.get(user).equals(password);
+        }
+        return false;
     }
 }
