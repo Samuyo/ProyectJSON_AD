@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.control.PasswordField?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #e97575;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.badpals.valorantapi.Controller.LoginController">
    <children>
       <SplitPane blendMode="SRC_ATOP" dividerPositions="0.4" layoutX="-7.0" layoutY="-6.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-7.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-6.0">
@@ -25,11 +26,11 @@
                         <Font name="Arial Black" size="14.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="txtPassword" layoutX="22.0" layoutY="228.0" prefHeight="23.0" prefWidth="248.0" style="-fx-background-color: #F5F5F5;">
+                  <PasswordField fx:id="txtPassword" layoutX="22.0" layoutY="228.0" prefHeight="23.0" prefWidth="248.0" style="-fx-background-color: #F5F5F5;">
                      <font>
                         <Font name="Arial" size="12.0" />
                      </font>
-                  </TextField>
+                  </PasswordField>
                   <Label fx:id="lblPassword" layoutX="22.0" layoutY="193.0" prefHeight="22.0" prefWidth="112.0" text="Password:" textAlignment="CENTER">
                      <font>
                         <Font name="Arial Black" size="14.0" />
