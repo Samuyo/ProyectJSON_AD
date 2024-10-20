@@ -23,7 +23,7 @@ public class User {
     private void saveUser(){
         users.put("Admin", "Dosp!");
         users.put("Usuario","1234a");
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("user.txt"))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("../../../../../resources/BD/users.txt"))) {
             for (Map.Entry<String, String> entry : users.entrySet()) {
                 writer.write(entry.getKey() + "=" + entry.getValue());
                 writer.newLine();
