@@ -19,6 +19,7 @@ public class Main extends Application {
         user = new User();
         user.saveUser();
         try {
+
             Parent root = FXMLLoader.load(getClass().getResource("/edu/badpals/valorantapi/login.fxml"));
             primaryStage.setTitle("Login ValorantAPI");
             primaryStage.setScene(new Scene(root));
