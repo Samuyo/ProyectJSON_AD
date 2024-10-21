@@ -1,5 +1,6 @@
 package edu.badpals.valorantapi;
 
+import edu.badpals.valorantapi.Controller.AgentsController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -18,6 +19,8 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws IOException {
         user = new User();
         user.saveUser();
+        AgentsController api = new AgentsController();
+        api.getAgentes();
         try {
 
             Parent root = FXMLLoader.load(getClass().getResource("/edu/badpals/valorantapi/login.fxml"));

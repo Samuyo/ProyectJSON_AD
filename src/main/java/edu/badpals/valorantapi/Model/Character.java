@@ -2,27 +2,39 @@ package edu.badpals.valorantapi.Model;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Character {
 
     HashMap<String, String> Characters = new HashMap<>();
     String nombre;
+    String uuid;
     String rol;
     String descripcion;
-    String ab1;
-    String ab2;
-    String ab3;
-    String ab4;
+    ArrayList<String> abilidades;
+    String urlImg;
 
-    Character(String nombre, String rol, String descripcion, String ab1, String ab2, String ab3, String ab4) {
+    public Character(String uuid, String nombre, String descripcion, String urlImg, String rol, ArrayList<String> abilities) {
         this.nombre = nombre;
+        this.uuid = uuid;
         this.rol = rol;
         this.descripcion = descripcion;
-        this.ab1 = ab1;
-        this.ab2 = ab2;
-        this.ab3 = ab3;
-        this.ab4 = ab4;
+        this.abilidades = abilities;
+        this.urlImg = urlImg;
+    }
+
+    @Override
+    public String toString() {
+        return "Agent{" +
+                "uuid='" + uuid + '\'' +
+                ", displayName='" + nombre + '\'' +
+                ", description='" + descripcion + '\'' +
+                ", fullPortrait='" + urlImg + '\'' +
+                ", roleName='" + rol + '\'' +
+                ", abilityNames=" + abilidades +
+                '}';
     }
 
     /* Recorre el JSON y llena el hashMap "Characters" con el nombre del agente y su id */
