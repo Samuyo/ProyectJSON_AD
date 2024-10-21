@@ -67,55 +67,67 @@ public class AgentsController implements Controller {
         }
     }
 
-    private void accesoAPI() {
+    public void getAgentes() {
+        String jsonResponse = accesoAPI();
+        if (jsonResponse != null) {
+            ArrayList<Character> agentes = procesarRespuesta(jsonResponse);
+            // Aquí puedes hacer algo con la lista de agentes
+            for (Character agente : agentes) {
+                System.out.println(agente);
+            }
+        }
+    }
+
+    private String accesoAPI() {
+        StringBuilder response = new StringBuilder();
         try {
-            // Crear un objeto URL
             URL obj = new URL(finalURL);
             HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-
-            // Configurar el método de solicitud
             con.setRequestMethod("GET");
-
-            // Obtener el código de respuesta
             int responseCode = con.getResponseCode();
             System.out.println("Response Code: " + responseCode);
 
-            // Leer la respuesta
-            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-            String inputLine;
-            StringBuilder response = new StringBuilder();
-
-            while ((inputLine = in.readLine()) != null) {
-                response.append(inputLine);
+            if (responseCode == HttpURLConnection.HTTP_OK) { // Comprueba si la respuesta es correcta
+                BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+                String inputLine;
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+                in.close();
+            } else {
+                System.err.println("Error en la conexión: " + responseCode);
+                return null;
             }
-            in.close();
-
         } catch (Exception e) {
             e.printStackTrace();
+            return null;
         }
+        return response.toString();
     }
 
     private ArrayList<Character> procesarRespuesta(String jsonResponse) {
         ArrayList<Character> agentes = new ArrayList<>();
-
-        // Convertir la respuesta JSON en un objeto JSONObject
         JSONObject jsonObject = new JSONObject(jsonResponse);
         JSONArray agentsArray = jsonObject.getJSONArray("data");
 
-
-        // Iterar sobre cada agente en el array
         for (int i = 0; i < agentsArray.length(); i++) {
             JSONObject agent = agentsArray.getJSONObject(i);
             String uuid = agent.getString("uuid");
             String displayName = agent.getString("displayName");
             String description = agent.getString("description");
-            String fullPortrait = agent.getString("fullPortrait");
 
-            // Obtener el rol
-            JSONObject role = agent.getJSONObject("role");
-            String roleName = role.getString("displayName");
 
-            // Obtener las habilidades
+            String fullPortrait = agent.get("fullPortrait").toString();
+
+
+            String roleName = "No role";  // Valor por defecto
+            if (agent.has("role") && !agent.isNull("role")) {
+                JSONObject role = agent.getJSONObject("role");
+                roleName = role.getString("displayName");
+            } else {
+                System.out.println("El agente no tiene un rol definido.");
+            }
+
             JSONArray abilitiesArray = agent.getJSONArray("abilities");
             ArrayList<String> abilityNames = new ArrayList<>();
             for (int j = 0; j < abilitiesArray.length(); j++) {
@@ -123,15 +135,9 @@ public class AgentsController implements Controller {
                 abilityNames.add(ability.getString("displayName"));
             }
 
-            // Crear un nuevo objeto Agent
             Character character = new Character(uuid, displayName, description, fullPortrait, roleName, abilityNames);
             agentes.add(character);
         }
         return agentes;
-    }
-
-    public ArrayList<Character> getAgentes() {
-        accesoAPI();
-        return procesarRespuesta(finalURL);
     }
 }
