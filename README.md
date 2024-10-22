@@ -1,25 +1,44 @@
-#AUTORES: David Baquero y Samuel
+# AUTORES: <u>David Baquero y Samuel<u>
 
-Repositorio github: https://github.com/Samuyo/ProyectJSON_AD/
+## Repositorio github: https://github.com/Samuyo/ProyectJSON_AD/
+***
 
-Guión:
-          - Introducción
-          - Capturas postman
-          - Manual usuario
-          - Manual técnico 
-          - Reparto de tareas
-          - Extras realizados
-          - Propuestas
-          - Control de errores 
-          - Conclusión y dedicación temporal
-INTRODUCCIÓN:
- 1.1 OBJETIVO DEL PROYECTO:
+# Índice
+1. [INTRODUCCIÓN:](#intorduccion)
+2. [CAPTURAS POSTMAN](#capturas-postman)
+3. [MANUAL USUARIO](#manual-usuario)
+4. [MANUAL TÉCNICO](#manual-tecnico)
+5. [REPARTO DE TAREAS](#reparto-de-tareas)
+6. [EXTRAS REALIZADOS](#extras-realizados)
+7. [PROPUESTAS](#propuestas)
+8. [CONTROL DE ERRORES](#control-de-errores)
+9. [CONCLUSIÓN Y TIEMPO DEDICADO](#conclusión-y-dedicación-temporal)
+
+***
+
+## INTRODUCCIÓN:
+ ### OBJETIVO DEL PROYECTO:
 El objetivo del proyecto es hacer una aplicación con interfaz gráfica, que acceda a una "base de datos" en un archivo "json" de una api que está en internet. En nuestro caso lo elegimos de VALORANT, donde vamos a buscar agentes.
-CAPTURAS POSTMAN
+
+***
+
+## CAPTURAS POSTMAN
+
+***
+
 2.1 La primera imagen es Gekko, un agente de VALORANT. La captura la hicimos en postman, la aplicación que usamos para comprobar las consultas.
+
+***
+
 2.2 Está captura es sobre Fade, que al igual que Gekko, es un agente de VALORANT 
+
+***
+
 2.3 La última captura es sobre la consulta de Breach
-MANUAL USUARIO
+
+***
+
+## MANUAL USUARIO
  Este punto se divide en 3, usado el jar, usando el IDE o compilador y el funcionamiento genérico.
 Antes de entrar al funcionamiento, se debe hacer un git clone (enlace del github) ruta/donde/quieres/clonar.
   3.1 Funcionamiento con el jar
@@ -32,13 +51,20 @@ Se te abrirá una ventana donde vas a tener un botón para salir a la pantalla d
 (Gekko, Fade, Sova, Breach, KAY/O, Skye, Phoenix, Neon, Reyna, Raze, Jett, Iso, Yoru, Vyse, Deadlock, Chamber, Sage, Killjoy, Cypher, Omen, Clove, Brimstone, Viper, Astra y Harbor) y una vez le das a buscar, se cambiará la ventana.
 
 En esta ventana, observarás un botón para volver al buscador y los datos (nombre, descripción, habilidades y rol) en inglés, ya que por el momento, la api solo está en inglés
+
 -añadir imagen si lo conseguimos.
-MANUAL TÉCNICO 
+
+***
+
+## MANUAL TÉCNICO
 En la paquete de Controller, están ubicados los controladores de las ventas y sus funciones (tratado en el 4.2)
 En el paquete Modelo, están ubicados las clases y los métodos de funcionamiento de la aplicación (tratado en el 4.3)
 4.1 Requisitos de uso
 Es necesario tener instalado javafx y el jdk de java 17.
-REPARTO DE TAREAS
+
+***
+
+## REPARTO DE TAREAS
 Paquete Modelo: Samuel
 Paquete Controller: 
 Funcionamiento con la interfaz gráfica: David 
@@ -46,15 +72,27 @@ Acceso a JSON: Ambos, principalmente Samuel ya que tuvimos un problema y fue qui
 README.MD: David
 Main: David
 Diseño de interfaz: Ambos
-EXTRAS REALIZADOS
+
+***
+
+## EXTRAS REALIZADOS
 Por revisar cuáles hemos hecho
-PROPUESTAS 
+
+***
+
+## PROPUESTAS
 Si en algún momento se continúa con la aplicación, se podría añadir la búsqueda de mapas y armas. En cuanto a las skins podría ser una función mucho más adelante en las armas.
-CONTROL DE ERRORES
+
+***
+
+## CONTROL DE ERRORES
 Por el momento:
 Si se introduce el nombre de un agente que no existe, la aplicación no busca nada.
 Si el usuario con el que se intenta iniciar no existe, la aplicación no entrará.
-CONCLUSIÓN Y TIEMPO DEDICADO
+
+***
+
+## CONCLUSIÓN Y TIEMPO DEDICADO
 El tiempo dedicado de David es aproximadamente de: 16h (por ahora)
 El tiempo dedicado de Samuel es aproximadamente de : -----
 
