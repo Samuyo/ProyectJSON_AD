@@ -17,9 +17,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
 
-public class AgentsController implements Controller {
+public class AgentsController {
     private String finalURL = "https://valorant-api.com/v1/agents";
 
     @FXML
@@ -46,7 +45,8 @@ public class AgentsController implements Controller {
     @FXML
     public Button btnReturn;
 
-    HashMap<String, String> agentes = new HashMap<>();
+
+    ArrayList<Character> agentes = new ArrayList<>();
 
 
     public void handlebtnReturn(ActionEvent event) {
@@ -67,16 +67,14 @@ public class AgentsController implements Controller {
         }
     }
 
-    public void getAgentes() {
+    private void getAgentesJSON() {
         String jsonResponse = accesoAPI();
         if (jsonResponse != null) {
-            ArrayList<Character> agentes = procesarRespuesta(jsonResponse);
-            // Aquí puedes hacer algo con la lista de agentes
-            for (Character agente : agentes) {
-                System.out.println(agente);
-            }
+            agentes = procesarRespuesta(jsonResponse);
+            System.out.println(agentes);
         }
     }
+
 
     private String accesoAPI() {
         StringBuilder response = new StringBuilder();
@@ -106,7 +104,7 @@ public class AgentsController implements Controller {
     }
 
     private ArrayList<Character> procesarRespuesta(String jsonResponse) {
-        ArrayList<Character> agentes = new ArrayList<>();
+
         JSONObject jsonObject = new JSONObject(jsonResponse);
         JSONArray agentsArray = jsonObject.getJSONArray("data");
 
@@ -124,8 +122,6 @@ public class AgentsController implements Controller {
             if (agent.has("role") && !agent.isNull("role")) {
                 JSONObject role = agent.getJSONObject("role");
                 roleName = role.getString("displayName");
-            } else {
-                System.out.println("El agente no tiene un rol definido.");
             }
 
             JSONArray abilitiesArray = agent.getJSONArray("abilities");
@@ -138,6 +134,62 @@ public class AgentsController implements Controller {
             Character character = new Character(uuid, displayName, description, fullPortrait, roleName, abilityNames);
             agentes.add(character);
         }
+        return agentes;
+    }
+
+    public Character buscarAgente(String nombre) {
+        for (Character agente : agentes) {
+            if (agente.getNombre().equals(nombre)) {
+                System.out.println(agente);
+                return agente; // Devuelve el objeto si se encuentra
+            }
+            else {
+                System.out.println("Peto amigo");
+            }
+        }
+        return null;
+    }
+    @FXML
+    private void setNomeAge(String nome) {
+        nomeAge.setText(""+nome);
+
+    }
+    @FXML
+    private void lblDescAg(String nome) {
+        lblAbil4Ag.setText(buscarAgente(nome).getDescripcion());
+    }
+    @FXML
+    private void lblRolAg(String Descripcion) {
+        lblAbil3Ag.setText(Descripcion);
+    }
+    @FXML
+    private void lblAbil1Ag(String Abil1) {
+        lblAbil1Ag.setText(Abil1);
+    }
+    @FXML
+    private void lblAbil2Ag(String Abil2) {
+        lblAbil2Ag.setText(Abil2);
+    }
+    @FXML
+    private void lblAbil3Ag(String Abil3) {
+        lblDescAg.setText(Abil3);
+    }
+    @FXML
+    private void lblAbil4Ag(String Abil4) {
+        lblRolAg.setText(Abil4);
+    }
+
+    public void setAgentes(Character character) {
+        setNomeAge(character.getNombre());
+        lblDescAg(character.getDescripcion());
+        lblRolAg(character.getRol());
+        lblAbil1Ag(character.getAbilidades().get(0));
+        lblAbil2Ag(character.getAbilidades().get(1));
+        lblAbil3Ag(character.getAbilidades().get(2));
+        lblAbil4Ag(character.getAbilidades().get(3));
+    }
+    public ArrayList<Character> getAgentes() {
+        getAgentesJSON();
         return agentes;
     }
 }

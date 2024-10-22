@@ -27,14 +27,27 @@ public class Character {
 
     @Override
     public String toString() {
-        return "Agent{" +
-                "uuid='" + uuid + '\'' +
-                ", displayName='" + nombre + '\'' +
-                ", description='" + descripcion + '\'' +
-                ", fullPortrait='" + urlImg + '\'' +
-                ", roleName='" + rol + '\'' +
-                ", abilityNames=" + abilidades +
-                '}';
+        return uuid + "," + nombre + "," + descripcion + "," + urlImg + "," + rol + "," + abilidades;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getRol() {
+        return rol;
+    }
+
+    public ArrayList<String> getAbilidades() {
+        return abilidades;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public String getUrlImg() {
+        return urlImg;
     }
 
     /* Recorre el JSON y llena el hashMap "Characters" con el nombre del agente y su id */

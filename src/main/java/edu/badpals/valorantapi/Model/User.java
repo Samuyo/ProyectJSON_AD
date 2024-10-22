@@ -14,6 +14,7 @@ public class User {
     private void admiUsers() {
         users.put("Admin", "Dosp!");
         users.put("Usuario","1234a");
+        users.put("11111","11111");
     }
 
     private void registerUser(String usuario, String contraseña){
