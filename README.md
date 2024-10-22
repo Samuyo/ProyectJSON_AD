@@ -111,15 +111,37 @@ Es necesario tener instalado **javafx** y el **jdk de java 17**.
 
 `accesoAPI:` Es el método encargado de acceder a la API por un objeto `URL`, hace un `GET` y obtiene la respuesta. Después comprueba que la respuesta sea igual que lo que hay, si es así, lee cada linea y la guarda en String.
 
-`procesarRespuesta:` Es el método que se encarga de procesar la respuesta del método anterior. Primero crea un `ArrayList`, un `JSONObject` y un `JSONArray`. Por cada agente en el array obtiene sus datos, añadiendo después todo como un objeto de la clase `Character` y por último lo añade al `ArrayList`.
+`procesarRespuesta:` Es el método que se encarga de procesar la respuesta del método anterior. Primero crea un `JSONObject` y un `JSONArray`. Por cada agente en el array obtiene sus datos, añadiendo después todo como un objeto de la clase `Character` y por último lo añade al `ArrayList`.
 
-`getAgentes:` Es el método que utilizamos para vincular los metodos anteriores. Obtiene el `String` de `accesoAPI` y si no es nulo, almacena el resultado de `procesarRespuesta` en un `ArrayList` de `Character`.
+`setAgentes:` Es el método que utilizamos para llamar a todos los cambios al buscar un agente.
+
+`setNomeAge` cambia el `Label` de el nombre.
+
+`lblDescAg` cambia el `Label` de la descripción.
+
+`lblRolAg` cambia el `Label` de el rol.
+
+`lblAbil1Ag` cambia el `Label` de la primera habilidad.
+
+`lblAbil2Ag` cambia el `Label` de la segunda habilidad.
+
+`lblAbil3Ag` cambia el `Label` de la tercera habilidad.
+
+`lblAbil3Ag` cambia el `Label` de la cuarta habilidad.
+
+`getAgentes` se utiliza para llamar a la funcion `getAgentesJSON` y devolver la lista con datos.
+
+`getAgentesJSON`Es el método que vincula `procesarRespuesta` y `accesoAPI` para pasarle la respuesta de `accesoAPI` a `procesarRespuesta`
 
 #### SearchController
 
-`handlebtnBuscar` Es el método encargado de buscar un agente, pero antes de ello verifica que esté dentro del `ArrayList` donde almacenamos la información.
+`handlebtnBuscar` Es el método encargado de buscar un agente, pero antes de ello verifica que esté con el metodo `buscarAgente`. Si no es null, entonces carga, obtiene el controllador de la proxima ventana para usar el método `setAgentes` *Se explica arriba*, después obtiene el estado de la ventana y la muestra.
+
+`buscarAgente` Este método recibe un `String` del método `handlebtnBuscar` y agrega cada agente a un objeto `AgentsController`.
 
 `handlebtnSalir` Es el método encargado de cargar, obtener el estado y mostrar la ventana de login. Básicamente funciona como un `Cerrar sesión`.
+
+`getAgentesJSON`
 
 
 ***
@@ -127,7 +149,7 @@ Es necesario tener instalado **javafx** y el **jdk de java 17**.
 ### 4.3 Paquete Model
 
 #### Character
-Lo usamos principalmente para el constructor
+`Getters` y `Contructor`
 
 #### User
 `saveUser:` Es el método encargado de escribir los usuarios que existen dentro del el archivo [txt](https://github.com/Samuyo/ProyectJSON_AD/blob/main/src/main/resources/BD/users.txt).
@@ -164,8 +186,8 @@ Por el momento:
 ***
 
 ## CONCLUSIÓN Y TIEMPO DEDICADO
-El tiempo dedicado de David es aproximadamente de: 17h (por ahora) <br/>
-El tiempo dedicado de Samuel es aproximadamente de : -----
+El tiempo dedicado de David es aproximadamente de: 20h (por ahora) <br/>
+El tiempo dedicado de Samuel es aproximadamente de : 20h
 
 ### 9.1  Conclusión:
 Con este proyecto hemos aprendido: a hacer interfaces y vincularlas en java, ya que de momento solo sabíamos en Python, hemos aprendido a entrar a archivos json en red, hemos practicado control de versiones en distintas ramas y nos ha servido como repaso para el examen de este temario.
