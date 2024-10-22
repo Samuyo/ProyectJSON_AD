@@ -12,9 +12,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import edu.badpals.valorantapi.Model.Character;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
@@ -118,18 +116,6 @@ public class AgentsController {
         return agentes;
     }
 
-    public Character buscarAgente(String nombre) {
-        for (Character agente : agentes) {
-            if (agente.getNombre().equals(nombre)) {
-                System.out.println(agente);
-                return agente; // Devuelve el objeto si se encuentra
-            } else {
-                System.out.println("Peto amigo");
-            }
-        }
-        return null;
-    }
-
     @FXML
     private void setNomeAge(String nome) {
         nomeAge.setText("" + nome);
@@ -177,6 +163,19 @@ public class AgentsController {
 
     public ArrayList<Character> getAgentes() {
         getAgentesJSON();
+        guardarJSON();
         return agentes;
+    }
+
+    private void guardarJSON() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/resources/BD/json.txt"))) {
+
+            for (Character character : agentes) {
+                writer.write(character.toString());
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
