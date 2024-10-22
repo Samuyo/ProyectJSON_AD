@@ -11,53 +11,44 @@ import javafx.stage.Stage;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import edu.badpals.valorantapi.Model.Character;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
 
-public class AgentsController implements Controller {
+public class AgentsController {
+
     private String finalURL = "https://valorant-api.com/v1/agents";
 
     @FXML
     public Label nomeAge;
-
     @FXML
     public Label lblAbil4Ag;
-
     @FXML
     public Label lblAbil3Ag;
-
     @FXML
     public Label lblAbil1Ag;
-
     @FXML
     public Label lblAbil2Ag;
-
     @FXML
     public Label lblDescAg;
-
     @FXML
     public Label lblRolAg;
-
     @FXML
     public Button btnReturn;
 
-    HashMap<String, String> agentes = new HashMap<>();
-
+    ArrayList<Character> agentes = new ArrayList<>();
 
     public void handlebtnReturn(ActionEvent event) {
         try {
-            // Carga la nueva venta
+            // Carga la nueva ventana
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/edu/badpals/valorantapi/search.fxml"));
             Parent root = loader.load();
-
-            // Obtiene el stado actual
+            // Obtiene el estado actual
             Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
-
             Scene scene = new Scene(root);
             stage.setScene(scene);
             // Muestra la ventana
@@ -67,14 +58,11 @@ public class AgentsController implements Controller {
         }
     }
 
-    public void getAgentes() {
+    private void getAgentesJSON() {
         String jsonResponse = accesoAPI();
         if (jsonResponse != null) {
-            ArrayList<Character> agentes = procesarRespuesta(jsonResponse);
-            // Aquí puedes hacer algo con la lista de agentes
-            for (Character agente : agentes) {
-                System.out.println(agente);
-            }
+            agentes = procesarRespuesta(jsonResponse);
+            System.out.println(agentes);
         }
     }
 
@@ -86,7 +74,6 @@ public class AgentsController implements Controller {
             con.setRequestMethod("GET");
             int responseCode = con.getResponseCode();
             System.out.println("Response Code: " + responseCode);
-
             if (responseCode == HttpURLConnection.HTTP_OK) { // Comprueba si la respuesta es correcta
                 BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
                 String inputLine;
@@ -106,38 +93,90 @@ public class AgentsController implements Controller {
     }
 
     private ArrayList<Character> procesarRespuesta(String jsonResponse) {
-        ArrayList<Character> agentes = new ArrayList<>();
         JSONObject jsonObject = new JSONObject(jsonResponse);
         JSONArray agentsArray = jsonObject.getJSONArray("data");
-
         for (int i = 0; i < agentsArray.length(); i++) {
             JSONObject agent = agentsArray.getJSONObject(i);
             String uuid = agent.getString("uuid");
             String displayName = agent.getString("displayName");
             String description = agent.getString("description");
-
-
             String fullPortrait = agent.get("fullPortrait").toString();
-
-
             String roleName = "No role";  // Valor por defecto
             if (agent.has("role") && !agent.isNull("role")) {
                 JSONObject role = agent.getJSONObject("role");
                 roleName = role.getString("displayName");
-            } else {
-                System.out.println("El agente no tiene un rol definido.");
             }
-
             JSONArray abilitiesArray = agent.getJSONArray("abilities");
             ArrayList<String> abilityNames = new ArrayList<>();
             for (int j = 0; j < abilitiesArray.length(); j++) {
                 JSONObject ability = abilitiesArray.getJSONObject(j);
                 abilityNames.add(ability.getString("displayName"));
             }
-
             Character character = new Character(uuid, displayName, description, fullPortrait, roleName, abilityNames);
             agentes.add(character);
         }
+        return agentes;
+    }
+
+    public Character buscarAgente(String nombre) {
+        for (Character agente : agentes) {
+            if (agente.getNombre().equals(nombre)) {
+                System.out.println(agente);
+                return agente; // Devuelve el objeto si se encuentra
+            } else {
+                System.out.println("Peto amigo");
+            }
+        }
+        return null;
+    }
+
+    @FXML
+    private void setNomeAge(String nome) {
+        nomeAge.setText("" + nome);
+    }
+
+    @FXML
+    private void lblDescAg(String nome) {
+        lblDescAg.setText(nome);
+    }
+
+    @FXML
+    private void lblRolAg(String rol) {
+        lblRolAg.setText(rol);
+    }
+
+    @FXML
+    private void lblAbil1Ag(String Abil1) {
+        lblAbil1Ag.setText(Abil1);
+    }
+
+    @FXML
+    private void lblAbil2Ag(String Abil2) {
+        lblAbil2Ag.setText(Abil2);
+    }
+
+    @FXML
+    private void lblAbil3Ag(String Abil3) {
+        lblAbil3Ag.setText(Abil3);
+    }
+
+    @FXML
+    private void lblAbil4Ag(String Abil4) {
+        lblAbil4Ag.setText(Abil4);
+    }
+
+    public void setAgentes(Character character) {
+        setNomeAge(character.getNombre());
+        lblDescAg((character.getDescripcion()));
+        lblRolAg(character.getRol());
+        lblAbil1Ag(character.getAbilidades().get(0));
+        lblAbil2Ag(character.getAbilidades().get(1));
+        lblAbil3Ag(character.getAbilidades().get(2));
+        lblAbil4Ag(character.getAbilidades().get(3));
+    }
+
+    public ArrayList<Character> getAgentes() {
+        getAgentesJSON();
         return agentes;
     }
 }
