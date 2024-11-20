@@ -10,7 +10,6 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import edu.badpals.valorantapi.Model.Character;
 
 import java.io.*;
 import java.net.HttpURLConnection;

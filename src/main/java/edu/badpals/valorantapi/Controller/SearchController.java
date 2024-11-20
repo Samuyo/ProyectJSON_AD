@@ -1,6 +1,5 @@
 package edu.badpals.valorantapi.Controller;
 
-import edu.badpals.valorantapi.Model.Character;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,7 +12,6 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class SearchController {
 
