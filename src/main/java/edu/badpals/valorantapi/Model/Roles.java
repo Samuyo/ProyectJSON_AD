@@ -16,13 +16,12 @@ public enum Roles {
         return nombre_rol;
     }
 
-    /**public static Roles getRol(String nombre_rol) {
+    public static Roles getRol(String nombre_rol) {
          for (Roles rol : Roles.values()) {
              if (rol.getNombre_rol().equals(nombre_rol)) {
              return rol;
          }
          }
             return null;
-         }
-     **/ // DESCOMENTAR PARA USAR EN EL FUTURO
+    }
 }
