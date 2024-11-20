@@ -19,8 +19,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        user = new User();
-        user.saveUser();
+        //user = new User();
+        //user.saveUser();
 
         AgentsController api = new AgentsController();
         api.getAgentes();

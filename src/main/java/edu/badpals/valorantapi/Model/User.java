@@ -1,31 +1,52 @@
 package edu.badpals.valorantapi.Model;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.HashMap;
-import java.util.Map;
-
 public class User {
-    HashMap<String,String> users = new HashMap<>();
 
-    private void admiUsers() {
-        users.put("Admin", "Dosp!");
-        users.put("Usuario","1234a");
-        users.put("11111","11111");
+    //Variables
+    private String nombreUsuario;
+    private String contraseña;
+    private boolean administrador;
+
+    //Constructor
+    public User(String nombreUsuario, String contraseña, boolean administrador) {
+        this.nombreUsuario = nombreUsuario;
+        this.contraseña = contraseña;
+        this.administrador = administrador;
     }
 
-    public void saveUser(){
-        admiUsers();
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/resources/BD/users.txt"))) {
-            for (Map.Entry<String, String> entry : users.entrySet()) {
-                writer.write(entry.getKey() + "=" + entry.getValue());
-                writer.newLine();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+    //Getters and Setters
+    public String getNombreUsuario() {
+        return nombreUsuario;
+    }
+
+    public String getContraseña() {
+        return contraseña;
+    }
+
+    public boolean isAdministrador() {
+        return administrador;
+    }
+
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
+    }
+
+    public void setContraseña(String contraseña) {
+        this.contraseña = contraseña;
+    }
+
+    public void setAdministrador(boolean administrador) {
+        this.administrador = administrador;
+    }
+
+    //To String
+    @Override
+    public String toString() {
+        return "User{" +
+                "nombre='" + nombreUsuario + '\'' +
+                ", contraseña='" + contraseña + '\'' +
+                ", administrador=" + administrador +
+                '}';
     }
 }
